@@ -5,6 +5,7 @@ AnswerIntent {Answer} ist meine Antwort
 AnswerIntent {Answer}
 
 AMAZON.StartOverIntent Spiel starten
+AMAZON.StartOverIntent starte Spiel
 AMAZON.StartOverIntent neues Spiel
 AMAZON.StartOverIntent starten
 AMAZON.StartOverIntent neues Spiel starten

@@ -1,7 +1,7 @@
 {
-  "name": "skill-sample-js-trivia",
+  "name": "harry",
   "version": "1.0.0",
-  "description": "A simple trivia skill i18n version.",
+  "description": "Harry Potter Ratespiel. A simple trivia skill i18n version. Based on Amazon skill-sample-js-trivia",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
     "skill",
     "trivia"
   ],
-  "author": "Amazon.com",
+  "author": "Moritz Strube, based on Amazon skill-sample-js-trivia",
   "license": "Apache-2.0",
   "dependencies": {
     "alexa-sdk": "^1.0.6"
