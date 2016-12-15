@@ -9,6 +9,7 @@ var GAME_STATES = {
     HELP: "_HELPMODE" // The user is asking for help.
 };
 var questions = require("./questions");
+var strip = require('./strip.js');
 
 /**
  * When editing your questions pay attention to your punctuation. Make sure you use question marks or periods.
@@ -18,18 +19,19 @@ var languageString = {
     "de-DE": {
         "translation": {
             "QUESTIONS" : questions["QUESTIONS_DE_DE"],
-            "GAME_NAME" : "Harry Potter Ratespiel in Deutsch", // Be sure to change this for your skill.
+            "GAME_NAME_1" : "inoffiziellen Harry Potter Ratespiel in Deutsch", // Be sure to change this for your skill.
+            "GAME_NAME_2" : "Das Inoffizielle Harry Potter Ratespiel in Deutsch", // Be sure to change this for your skill.
             "HELP_MESSAGE": "Ich stelle dir %s Multiple-Choice-Fragen. Antworte mit der Zahl, die zur richtigen Antwort gehört, zum Beispiel Eins. " +
-            "Sage beispielsweise eins, zwei, drei oder vier. Du kannst jederzeit ein neues Spiel beginnen, sage einfach „Spiel starten“. ",
-            "REPEAT_QUESTION_MESSAGE": "Wenn die letzte Frage wiederholt werden soll, sage „Wiederholen“ ",
-            "ASK_MESSAGE_START": "Möchtest du beginnen?",
+            "Sage beispielsweise eins, zwei, drei oder vier. Du kannst jederzeit ein neues Spiel beginnen, sage einfach 'Spiel starten'. ",
+            "REPEAT_QUESTION_MESSAGE": "Wenn die letzte Frage wiederholt werden soll, sage 'Wiederholen' ",
+            "ASK_MESSAGE_START": "Möchtest du beginnen? ",
             "HELP_REPROMPT": "Wenn du eine Frage beantworten willst, antworte mit der Zahl, die zur richtigen Antwort gehört, zum Beispiel Eins. ",
-            "STOP_MESSAGE": "Möchtest du weiterspielen?",
-            "CANCEL_MESSAGE": "OK, dann lass uns bald mal wieder spielen.",
-            "NO_MESSAGE": "OK, spielen wir ein andermal. Auf Wiedersehen!",
-            "TRIVIA_UNHANDLED": "Sagt eine Zahl beispielsweise zwischen 1 und %s",
-            "HELP_UNHANDLED": "Sage ja, um fortzufahren, oder nein, um das Spiel zu beenden.",
-            "START_UNHANDLED": "Du kannst jederzeit ein neues Spiel beginnen, sage einfach „Spiel starten“.",
+            "STOP_MESSAGE": "Möchtest du weiterspielen? ",
+            "CANCEL_MESSAGE": "OK, dann lass uns bald mal wieder spielen. ",
+            "NO_MESSAGE": "OK, spielen wir ein andermal. Auf Wiedersehen! ",
+            "TRIVIA_UNHANDLED": "Sagt eine Zahl beispielsweise zwischen 1 und %s ",
+            "HELP_UNHANDLED": "Sage ja, um fortzufahren, oder nein, um das Spiel zu beenden. ",
+            "START_UNHANDLED": "Du kannst jederzeit ein neues Spiel beginnen, sage einfach 'Spiel starten'. ",
             "NEW_GAME_MESSAGE": "Willkommen beim %s. ",
             "WELCOME_MESSAGE": "Ich stelle dir %s Fragen und du versuchst, so viele wie möglich richtig zu beantworten. " +
             "Sage einfach die Zahl, die zur richtigen Antwort passt. Fangen wir an. ",
@@ -38,14 +40,14 @@ var languageString = {
             "CORRECT_ANSWER_MESSAGE": "Die richtige Antwort ist %s: %s. ",
             "ANSWER_IS_MESSAGE": "Diese Antwort ist ",
             "TELL_QUESTION_MESSAGE": "%s. Frage.  %s ",
-            "GAME_OVER_MESSAGE": "Du hast %s von %s richtig beantwortet. Danke fürs Mitspielen!",
-            "SCORE_IS_MESSAGE": "Dein aktuelles Ergebnis ist %s  <break time='0.5s'/>."
+            "GAME_OVER_MESSAGE": "Du hast %s von %s richtig beantwortet. Danke fürs Mitspielen! ",
+            "SCORE_IS_MESSAGE": "Dein aktuelles Ergebnis ist %s  <break time='0.5s'/>. "
         }
     }
 };
 
 var Alexa = require("alexa-sdk");
-var APP_ID = undefined;  // TODO replace with your app ID (OPTIONAL).
+var APP_ID = "amzn1.ask.skill.a7659f13-3cdb-4002-bc40-941629c35991";  // TODO replace with your app ID (OPTIONAL).
 
 exports.handler = function(event, context, callback) {
     var alexa = Alexa.handler(event, context);
@@ -77,7 +79,7 @@ var newSessionHandlers = {
 
 var startStateHandlers = Alexa.CreateStateHandler(GAME_STATES.START, {
     "StartGame": function (newGame) {
-        var speechOutput = newGame ? this.t("NEW_GAME_MESSAGE", this.t("GAME_NAME")) + this.t("WELCOME_MESSAGE", GAME_LENGTH.toString()) : "";
+        var speechOutput = newGame ? this.t("NEW_GAME_MESSAGE", this.t("GAME_NAME_1")) + this.t("WELCOME_MESSAGE", GAME_LENGTH.toString()) : "";
         // Select GAME_LENGTH questions for the game
         var translatedQuestions = this.t("QUESTIONS");
         var gameQuestions = populateGameQuestions(translatedQuestions);
@@ -107,7 +109,7 @@ var startStateHandlers = Alexa.CreateStateHandler(GAME_STATES.START, {
 
         // Set the current state to trivia mode. The skill will now use handlers defined in triviaStateHandlers
         this.handler.state = GAME_STATES.TRIVIA;
-        this.emit(":askWithCard", speechOutput, repromptText, this.t("GAME_NAME"), repromptText);
+        this.emit(":askWithCard", speechOutput, repromptText, this.t("GAME_NAME_2"), strip.stripTags(repromptText));
     }
 });
 
@@ -248,7 +250,7 @@ function handleUserGuess(userGaveUp) {
             "correctAnswerText": translatedQuestions[gameQuestions[currentQuestionIndex]][Object.keys(translatedQuestions[gameQuestions[currentQuestionIndex]])[0]][0]
         });
 
-        this.emit(":askWithCard", speechOutput, repromptText, this.t("GAME_NAME"), repromptText);
+        this.emit(":askWithCard", speechOutput, repromptText, this.t("GAME_NAME_2"), strip.stripTags(repromptText));
     }
 }
 
