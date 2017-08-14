@@ -9,7 +9,7 @@ module.exports = {
     "QUESTIONS_DE_DE" : [
         {
             "Aus welchem Holz ist Harrys Zauberstab?": [
-                "Stichpalme",
+                "Stechpalme",
                 "Eiche",
                 "Birke",
                 "Weide"
@@ -18,7 +18,7 @@ module.exports = {
         {
             "Wie heißt Harrys Eule?": [
                 "Hedwig",
-                "Artur",
+                "Arthur",
                 "Percy",
                 "Minerva"
             ]
