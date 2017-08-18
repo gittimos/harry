@@ -5,7 +5,7 @@ module.exports = {
      * When editing your questions pay attention to your punctuation. Make sure you use question marks or periods.
      * Make sure the first answer is the correct one. Set at least ANSWER_COUNT answers, any extras will be shuffled in.
      */
-    
+
     "QUESTIONS_DE_DE" : [
         {
             "Aus welchem Holz ist Harrys Zauberstab?": [
@@ -94,7 +94,47 @@ module.exports = {
                 "Lily <phoneme alphabet='ipa' ph='dɝɹsleɪ'>Dursley</phoneme>",
                 "Hedwig <phoneme alphabet='ipa' ph='dɝɹsleɪ'>Dursley</phoneme>"
             ]
-        }
-       
+        },
+        {
+
+            "Wie viele Geschenke bekommt Dudley zu seinem elften Geburtstag von seinen Eltern?": [
+                "36",
+                "37",
+                "38",
+                "35"
+            ]
+        },
+        {
+            "Wie heißt der Hippogreif, der während Hagrids erster Stunde Draco angegriffen hat?": [
+                "Seidenschnabel",
+                "Firenze",
+                "Aragog",
+                "Skamander"
+            ]
+        },
+        {
+            "Wie heißt Harrys größte Verehrerin?": [
+                "Ginny",
+                "Cho",
+                "Luna",
+                "Pansy"
+            ]
+        },
+        {
+           "Wie heißt der goldene Ball beim Zauberersport Quidditch?": [
+               "Schnatz",
+               "Klatscher",
+               "Quaffel",
+               "Nimbus"
+           ]
+        },
+        {
+            "Mit welchem Auto flogen Harry und Ron im zweiten Schuljahr nach Hogwarts?": [
+                "Ford Anglia",
+                "Ford Focus",
+                "Ford Fiesta",
+                "Ford Kuga"
+            ]
+        },
     ]
 };
